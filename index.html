@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Investment Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Investment Simulator</h1>
+
+  <div id="start-screen">
+    <label for="personality">Select your investor personality:</label>
+    <select id="personality">
+      <option value="">--Choose--</option>
+      <option value="conservative">Conservative</option>
+      <option value="balanced">Balanced</option>
+      <option value="growth">Growth</option>
+      <option value="aggressive">Aggressive</option>
+    </select>
+    <button onclick="startGame()">Start</button>
+  </div>
+
+  <div id="menu" style="display: none;">
+    <p id="initial-funds"></p>
+    <h2>--- Investment Advisor Menu ---</h2>
+    <button onclick="getAdvice()">1. Get investment advice</button><br />
+    <button onclick="executeTrade()">2. Execute trade</button><br />
+    <button onclick="viewHoldings()">3. View current holdings</button><br />
+    <button onclick="viewPrices()">4. View price data</button><br />
+    <button onclick="exitGame()">5. Exit</button>
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

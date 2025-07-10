@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Investment Simulator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Investment Simulator</h1>
+  <div class="container">
+    <h1>💼 Investment Simulator</h1>
 
-  <div id="start-screen">
-    <label for="personality">Select your investor personality:</label>
-    <select id="personality">
-      <option value="">--Choose--</option>
-      <option value="conservative">Conservative</option>
-      <option value="balanced">Balanced</option>
-      <option value="growth">Growth</option>
-      <option value="aggressive">Aggressive</option>
+    <label for="persona">Select Your Investor Type:</label>
+    <select id="persona">
+      <option value="type1">Conservative</option>
+      <option value="type2">Balanced</option>
+      <option value="type3">Aggressive</option>
+      <option value="type4">Speculative</option>
     </select>
-    <button onclick="startGame()">Start</button>
-  </div>
+    <button onclick="setPersona()">Confirm</button>
 
-  <div id="menu" style="display: none;">
-    <p id="initial-funds"></p>
-    <h2>--- Investment Advisor Menu ---</h2>
-    <button onclick="getAdvice()">1. Get investment advice</button><br />
-    <button onclick="executeTrade()">2. Execute trade</button><br />
-    <button onclick="viewHoldings()">3. View current holdings</button><br />
-    <button onclick="viewPrices()">4. View price data</button><br />
-    <button onclick="exitGame()">5. Exit</button>
-    <div id="output"></div>
+    <div id="menu" class="menu hidden">
+      <h2>📊 Investment Advisor Menu</h2>
+      <button onclick="getAdvice()">1. Get investment advice</button>
+      <button onclick="executeTrade()">2. Execute trade</button>
+      <button onclick="viewHoldings()">3. View holdings</button>
+      <button onclick="viewPrices()">4. View price data</button>
+      <button onclick="exit()">5. Exit</button>
+    </div>
+
+    <div id="output" class="output"></div>
   </div>
 
   <script src="script.js"></script>

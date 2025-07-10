@@ -1,62 +1,39 @@
+let persona = "";
 let funds = 0;
-let holdings = {};
 
-function startGame() {
-  const personality = document.getElementById("personality").value;
-  if (!personality) {
-    alert("Please select an investor personality.");
-    return;
+function setPersona() {
+  const selected = document.getElementById("persona").value;
+  persona = selected;
+
+  switch (persona) {
+    case "type1": funds = 10000; break;
+    case "type2": funds = 50000; break;
+    case "type3": funds = 100000; break;
+    case "type4": funds = 200000; break;
+    default: funds = 0;
   }
 
-  const fundMap = {
-    conservative: 10000,
-    balanced: 20000,
-    growth: 30000,
-    aggressive: 40000
-  };
-
-  funds = fundMap[personality];
-  document.getElementById("initial-funds").textContent = `Initial Funds: $${funds}`;
-  document.getElementById("start-screen").style.display = "none";
-  document.getElementById("menu").style.display = "block";
+  document.getElementById("output").textContent = `🎯 You selected ${persona}. Starting funds: $${funds}.`;
+  document.getElementById("menu").classList.remove("hidden");
 }
 
+// 模拟功能占位
 function getAdvice() {
-  document.getElementById("output").textContent = "Invest in AAPL this month.";
+  document.getElementById("output").textContent = "📈 Suggested: Buy AAPL this month.";
 }
 
 function executeTrade() {
-  if (funds < 1000) {
-    document.getElementById("output").textContent = "Not enough funds to execute trade.";
-    return;
-  }
-  funds -= 1000;
-  holdings["AAPL"] = (holdings["AAPL"] || 0) + 1;
-  document.getElementById("output").textContent = "Bought 1 share of AAPL. Remaining funds: $" + funds;
+  document.getElementById("output").textContent = "✅ Trade executed!";
 }
 
 function viewHoldings() {
-  let text = "Your Holdings:\n";
-  for (let stock in holdings) {
-    text += `${stock}: ${holdings[stock]} shares\n`;
-  }
-  if (text === "Your Holdings:\n") text += "None.";
-  document.getElementById("output").textContent = text;
+  document.getElementById("output").textContent = "📦 Holdings: AAPL (50), TSLA (30)";
 }
 
 function viewPrices() {
-  const prices = {
-    AAPL: "$190",
-    TSLA: "$650",
-    MSFT: "$310"
-  };
-  let text = "Current Prices:\n";
-  for (let stock in prices) {
-    text += `${stock}: ${prices[stock]}\n`;
-  }
-  document.getElementById("output").textContent = text;
+  document.getElementById("output").textContent = "📊 Prices: AAPL $190, TSLA $720";
 }
 
-function exitGame() {
-  location.reload();
+function exit() {
+  document.getElementById("output").textContent = "👋 Thank you for using the simulator.";
 }

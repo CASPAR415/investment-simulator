@@ -35,7 +35,7 @@ function executeTrade() {
 }
 
 function fetchHoldings() {
-  fetch("http://localhost:5000/holdings")
+  fetch("https://investment-backend-1-rlp3.onrender.com/holdings")
     .then(res => res.text())
     .then(data => {
       document.getElementById("output").innerText = data;
@@ -58,7 +58,7 @@ function viewPrices() {
     return;
   }
 
-  fetch(`http://localhost:5000/prices?date=${date}`)
+  fetch(`https://investment-backend-1-rlp3.onrender.com/prices?date=${date}`)
     .then(res => res.json())
     .then(data => {
       if (data.error) {

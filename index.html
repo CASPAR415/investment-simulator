@@ -23,12 +23,21 @@
       <h2>📊 Investment Advisor Menu</h2>
       <button onclick="getAdvice()">1. Get investment advice</button>
       <button onclick="executeTrade()">2. Execute trade</button>
-      <button onclick="viewHoldings()">3. View holdings</button>
-      <button onclick="viewPrices()">4. View price data</button>
+      <button onclick="fetchHoldings()">3. View holdings</button>
+      <button onclick="togglePriceSection()">4. View price data</button>
       <button onclick="exit()">5. Exit</button>
     </div>
 
-    <div id="output" class="output"></div>
+    <!-- 动态选择时间（默认隐藏） -->
+    <div id="price-section" class="hidden">
+      <label for="price-month">Select Month to View Price:</label>
+      <select id="price-month">
+        <option value="">-- Select Month --</option>
+      </select>
+      <button onclick="viewPrices()">Submit</button>
+    </div>
+
+    <pre id="output" class="output"></pre>
   </div>
 
   <script src="script.js"></script>

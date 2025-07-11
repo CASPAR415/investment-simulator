@@ -13,27 +13,87 @@ function setPersona() {
     default: funds = 0;
   }
 
-  document.getElementById("output").textContent = `🎯 You selected ${persona}. Starting funds: $${funds}.`;
+  const personaNames = {
+    type1: "Conservative",
+    type2: "Balanced",
+    type3: "Aggressive",
+    type4: "Speculative"
+  };
+
+  document.getElementById("output").innerText = 
+    `🎯 You selected ${personaNames[persona] || "Unknown"}.\nStarting funds: $${funds.toLocaleString()}`;
+
   document.getElementById("menu").classList.remove("hidden");
 }
 
-// 模拟功能占位
 function getAdvice() {
-  document.getElementById("output").textContent = "📈 Suggested: Buy AAPL this month.";
+  document.getElementById("output").innerText = "📈 Suggested: Buy AAPL this month.";
 }
 
 function executeTrade() {
-  document.getElementById("output").textContent = "✅ Trade executed!";
+  document.getElementById("output").innerText = "✅ Trade executed!";
 }
 
-function viewHoldings() {
-  document.getElementById("output").textContent = "📦 Holdings: AAPL (50), TSLA (30)";
+function fetchHoldings() {
+  fetch("http://localhost:5000/holdings")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("output").innerText = data;
+    })
+    .catch(err => {
+      document.getElementById("output").innerText = "❌ Error fetching holdings.";
+      console.error(err);
+    });
+}
+
+function togglePriceSection() {
+  document.getElementById("price-section").classList.remove("hidden");
+  document.getElementById("output").innerText = "📅 Please select a month to view price data.";
 }
 
 function viewPrices() {
-  document.getElementById("output").textContent = "📊 Prices: AAPL $190, TSLA $720";
+  const date = document.getElementById("price-month").value;
+  if (!date) {
+    document.getElementById("output").innerText = "❗ Please select a valid month.";
+    return;
+  }
+
+  fetch(`http://localhost:5000/prices?date=${date}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById("output").innerText = `❌ ${data.error}`;
+        return;
+      }
+
+      let output = `📊 Price Data for ${date}:\n`;
+      for (const [company, info] of Object.entries(data)) {
+        const stock = info.stock || {};
+        output += `${company}:\n  Price: $${stock.price}\n  Change: ${stock.change}\n  Volume: ${stock.volume}\n\n`;
+      }
+
+      document.getElementById("output").innerText = output.trim();
+    })
+    .catch(err => {
+      document.getElementById("output").innerText = "❌ Error fetching price data.";
+      console.error(err);
+    });
 }
 
 function exit() {
-  document.getElementById("output").textContent = "👋 Thank you for using the simulator.";
+  document.getElementById("output").innerText = "👋 Thank you for using the simulator.";
 }
+
+// 页面加载后动态生成 2020-01 到 2024-12 的选项
+window.onload = function () {
+  const select = document.getElementById("price-month");
+  for (let year = 2020; year <= 2024; year++) {
+    for (let month = 1; month <= 12; month++) {
+      const m = month < 10 ? `0${month}` : `${month}`;
+      const option = document.createElement("option");
+      option.value = `${year}-${m}`;
+      option.textContent = `${year}-${m}`;
+      select.appendChild(option);
+    }
+  }
+};

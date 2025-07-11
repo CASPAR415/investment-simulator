@@ -1,3 +1,4 @@
+/* 页面整体设置 */
 body {
   margin: 0;
   font-family: "Segoe UI", "Inter", sans-serif;
@@ -10,6 +11,7 @@ body {
   padding-top: 50px;
 }
 
+/* 中心卡片容器 */
 .container {
   background-color: #111827;
   border-radius: 16px;
@@ -17,21 +19,26 @@ body {
   max-width: 600px;
   width: 90%;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.4s ease-in-out;
 }
 
+/* 标题样式 */
 h1, h2 {
   text-align: center;
   margin-bottom: 24px;
+  color: #e5e7eb;
 }
 
-label, select, button {
+/* 表单控件布局 */
+label, select, button, input[type="month"] {
   display: block;
   width: 100%;
   margin-bottom: 16px;
   font-size: 16px;
 }
 
-select {
+/* 下拉框样式 */
+select, input[type="month"] {
   padding: 10px;
   border-radius: 8px;
   border: none;
@@ -39,6 +46,7 @@ select {
   color: white;
 }
 
+/* 按钮样式 */
 button {
   background-color: #3b82f6;
   color: white;
@@ -54,14 +62,36 @@ button:hover {
   background-color: #2563eb;
 }
 
+/* 输出框样式 */
 .output {
-  margin-top: 24px;
-  background-color: #1e293b;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 14px;
+  background-color: #32445a;
   padding: 16px;
+  border: 1px solid #58709c;
   border-radius: 8px;
-  min-height: 60px;
+  color: #f3f4f6;
+  margin-top: 20px;
+  min-height: 120px;
+  line-height: 1.6;
 }
 
+
+/* 隐藏组件 */
 .hidden {
   display: none;
+}
+
+/* 日期选择区域更紧凑 */
+#price-section label {
+  font-weight: bold;
+  margin-top: 8px;
+  color: #e5e7eb;
+}
+
+/* 动画：加载过渡效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

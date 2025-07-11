@@ -27,7 +27,40 @@ function setPersona() {
 }
 
 function getAdvice() {
-  document.getElementById("output").innerText = "📈 Suggested: Buy AAPL this month.";
+  const date = document.getElementById("price-month").value;
+  if (!date) {
+    document.getElementById("output").innerText = "❗ Please select a month before getting advice.";
+    return;
+  }
+
+  fetch("https://investment-backend-1-rlp3.onrender.com/advice", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      date: date,
+      personality: persona
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById("output").innerText = `❌ ${data.error}`;
+        return;
+      }
+
+      let output = `🧠 Investment Advice for ${date}:\n`;
+      for (const rec of data.recommendations || []) {
+        output += `📌 ${rec.company}\n- Action: ${rec.action}\n- Shares: ${rec.shares_to_transact}\n- Reason: ${rec.reason}\n- Confidence: ${rec.confidence}\n\n`;
+      }
+
+      document.getElementById("output").innerText = output.trim();
+    })
+    .catch(err => {
+      document.getElementById("output").innerText = "❌ Error fetching advice.";
+      console.error(err);
+    });
 }
 
 function executeTrade() {

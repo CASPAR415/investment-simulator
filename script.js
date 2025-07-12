@@ -63,9 +63,51 @@ function getAdvice() {
     });
 }
 
+// ✅ 1. 显示交易表单区域
 function executeTrade() {
-  document.getElementById("output").innerText = "✅ Trade executed!";
+  document.getElementById("trade-form").classList.remove("hidden");
+  document.getElementById("output").innerText = "📝 Please fill in the trade form below.";
 }
+
+// ✅ 2. 提交交易信息给后端
+function submitTrade() {
+  const symbol = document.getElementById("symbol").value.trim().toUpperCase();
+  const action = document.getElementById("action").value;
+  const quantity = parseInt(document.getElementById("quantity").value);
+  const date = document.getElementById("price-month").value;
+
+  if (!symbol || !quantity || !date) {
+    document.getElementById("output").innerText = "❗ Please complete all trade fields.";
+    return;
+  }
+
+  fetch("https://investment-backend-1-rlp3.onrender.com/trade", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      symbol,
+      action,
+      quantity,
+      date
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById("output").innerText = `❌ ${data.error}`;
+      } else {
+        document.getElementById("output").innerText = `✅ ${data.message}`;
+      }
+      document.getElementById("trade-form").classList.add("hidden"); // 隐藏表单
+    })
+    .catch(err => {
+      document.getElementById("output").innerText = "❌ Failed to execute trade.";
+      console.error(err);
+    });
+}
+
 
 function fetchHoldings() {
   fetch("https://investment-backend-1-rlp3.onrender.com/holdings")

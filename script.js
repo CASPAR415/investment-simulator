@@ -13,6 +13,27 @@ function setPersona() {
     default: funds = 0;
   }
 
+ fetch("https://investment-backend-1-rlp3.onrender.com/init", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      personality: persona,
+      initial_funds: funds
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("✅ init success:", data);
+    document.getElementById("output").innerText = 
+      `🎯 You selected ${personaNames[persona] || "Unknown"}.\nStarting funds: $${funds.toLocaleString()}`;
+    document.getElementById("menu").classList.remove("hidden");
+  })
+  .catch(err => {
+    console.error("❌ init failed", err);
+    document.getElementById("output").innerText = "❌ Failed to initialize account.";
+  });
+
+
   const personaNames = {
     type1: "Conservative",
     type2: "Balanced",

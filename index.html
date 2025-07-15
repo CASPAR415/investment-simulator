@@ -7,56 +7,74 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>💼 Investment Simulator</h1>
 
-    <label for="persona">Select Your Investor Type:</label>
-    <select id="persona">
-      <option value="type1">Conservative</option>
-      <option value="type2">Balanced</option>
-      <option value="type3">Aggressive</option>
-      <option value="type4">Speculative</option>
-    </select>
-    <button onclick="setPersona()">Confirm</button>
+  <div class="wrapper">
+    <div class="container">
+      <h1>💼 Investment Simulator</h1>
 
-    <div id="menu" class="menu hidden">
-      <h2>📊 Investment Advisor Menu</h2>
+      <label for="persona">Select Your Investor Type:</label>
+      <select id="persona">
+        <option value="type1">Conservative</option>
+        <option value="type2">Balanced</option>
+        <option value="type3">Aggressive</option>
+        <option value="type4">Speculative</option>
+      </select>
+      <button onclick="setPersona()">Confirm</button>
 
-      <div id="month-select" class="month-section">
-        <label for="price-month">📅 Select Month:</label>
-        <select id="price-month">
-          <option value="">-- Select Month --</option>
-        </select>
+      <div id="menu" class="menu hidden">
+        <div class="alert-message">
+          Now you can experience investing immersively! Depending on the different personalities you measured in the first stage, you will be allocated different amounts of seed money, we use real historical data from 2020-2024, and you can start investing in any month you choose. The investment process will end when all funds are used up, or when the last month is reached. You can move to the next month with button five, or end the transaction yourself with button six.
+        </div>
+        
+        <h2>📊 Investment Advisor Menu</h2>
+
+        <div id="month-select" class="month-section">
+          <label for="price-month">📅 Select Month:</label>
+          <select id="price-month">
+            <option value="">-- Select Month --</option>
+          </select>
+        </div>
+
+        <button onclick="getAdvice()">1. Get investment advice</button>
+        <button onclick="executeTrade()">2. Execute trade</button>
+        <button onclick="fetchHoldings()">3. View holdings</button>
+        <button onclick="viewPrices()">4. View price data</button>
+        <button onclick="updateDate()">5. Update to next month</button>
+        <button onclick="exitSimulation()">6. Exit</button>
+
+        <div id="trade-form" class="hidden">
+          <label for="symbol">Stock Symbol:</label>
+          <input type="text" id="symbol" placeholder="e.g. AAPL" />
+
+          <label for="action">Action:</label>
+          <select id="action">
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+          </select>
+
+          <label for="quantity">Shares:</label>
+          <input type="number" id="quantity" min="1" placeholder="Enter number of shares" />
+
+          <button onclick="submitTrade()">Submit Trade</button>
+        </div>
       </div>
 
-      <button onclick="getAdvice()">1. Get investment advice</button>
-      <button onclick="executeTrade()">2. Execute trade</button>
-      <button onclick="fetchHoldings()">3. View holdings</button>
-      <button onclick="viewPrices()">4. View price data</button>
-      <button onclick="exit()">5. Exit</button>
-
-      <!-- ✅ Execute Trade 表单区域 -->
-      <div id="trade-form" class="hidden">
-        <label for="symbol">Stock Symbol:</label>
-        <input type="text" id="symbol" placeholder="e.g. AAPL" />
-
-        <label for="action">Action:</label>
-        <select id="action">
-          <option value="buy">Buy</option>
-          <option value="sell">Sell</option>
-        </select>
-
-        <label for="quantity">Shares:</label>
-        <input type="number" id="quantity" min="1" placeholder="Enter number of shares" />
-
-        <button onclick="submitTrade()">Submit Trade</button>
-      </div>
+      <pre id="output" class="output"></pre>
     </div>
 
-    <pre id="output" class="output"></pre>
+    <div class="container">
+      <button class="back-button" onclick="goBack()">← go back</button>
+    </div>
   </div>
+
+  <script>
+    function goBack() {
+      window.location.href = "index.html"; // 替换为你的主页面路径
+    }
+  </script>
 
   <script src="script.js"></script>
 </body>
 </html>
+       
 

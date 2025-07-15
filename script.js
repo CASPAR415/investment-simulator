@@ -13,7 +13,7 @@ function setPersona() {
     default: funds = 0;
   }
 
- fetch("https://investment-backend-1-rlp3.onrender.com/init", {
+  fetch("https://investment-backend-1-rlp3.onrender.com/init", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -176,7 +176,35 @@ function viewPrices() {
     });
 }
 
-function exit() {
+function updateDate() {
+  const currentDate = document.getElementById("price-month").value;
+  if (!currentDate) {
+    document.getElementById("output").innerText = "❗ Please select a month before updating.";
+    return;
+  }
+
+  fetch("https://investment-backend-1-rlp3.onrender.com/update-date", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      date: currentDate
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      const newDate = data.new_date;
+      document.getElementById("price-month").value = newDate;
+      document.getElementById("output").innerText = `✅ Updated date to ${newDate}`;
+    })
+    .catch(err => {
+      document.getElementById("output").innerText = "❌ Error updating date.";
+      console.error(err);
+    });
+}
+
+function exitSimulation() {
   document.getElementById("output").innerText = "👋 Thank you for using the simulator.";
 }
 

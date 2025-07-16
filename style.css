@@ -1,11 +1,11 @@
-/* 页面整体设置 */
+/* 页面整体设置 - 匹配图片浅色渐变背景 */
 body {
   margin: 0;
   font-family: "Segoe UI", "Inter", sans-serif;
-  background: linear-gradient(to right, #1f2937, #374151);
-  color: #f3f4f6;
+  /* 图片主色调渐变：浅蓝色到蓝绿色 */
+  background: linear-gradient(135deg, #e0f2fe, #e0f7fa);
+  color: #263238; /* 图片通用文字色 */
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,28 +13,30 @@ body {
   padding: 40px 20px;
 }
 
-/* 外层包裹容器：用于整体居中 */
+/* 外层包裹容器 */
 .wrapper {
   width: 100%;
   max-width: 640px;
 }
 
-/* 中心卡片容器 */
+/* 中心卡片容器 - 图片中卡片浅色背景 */
 .container {
-  background-color: #111827;
+  /* 卡片底色，与图片一致 */
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05); /* 图片风格阴影 */
   animation: fadeIn 0.4s ease-in-out;
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* 标题样式 */
+/* 标题样式 - 图片中标题蓝绿色 */
 h1, h2 {
   text-align: center;
   margin-bottom: 24px;
-  color: #e5e7eb;
+  /* 标题蓝绿色，匹配图片标题色调 */
+  color: #00acc1;
 }
 
 /* 表单控件布局 */
@@ -45,41 +47,47 @@ label, select, button, input[type="month"] {
   font-size: 16px;
 }
 
-/* 下拉框样式 */
+/* 下拉框与输入框 - 图片中浅色输入背景 */
 select, input[type="month"] {
   padding: 10px;
   border-radius: 8px;
   border: none;
-  background-color: #1e293b;
-  color: white;
+  /* 输入框浅色背景，与图片一致 */
+  background-color: #e0f7fa;
+  color: #263238; /* 输入框文字色 */
 }
 
-/* 按钮样式 */
+/* 按钮样式 - 图片中蓝绿色渐变按钮 */
 button {
-  background-color: #3b82f6;
+  /* 图片主按钮渐变：蓝绿色到浅蓝色 */
+  background: linear-gradient(90deg, #00acc1, #4dd0e1);
   color: white;
   padding: 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 button:hover {
-  background-color: #2563eb;
+  /* 加深渐变，匹配图片交互效果 */
+  background: linear-gradient(90deg, #0097a7, #00acc1);
+  transform: translateY(-1px);
 }
 
-/* 输出框样式 */
+/* 输出框样式 - 图片中信息展示区风格 */
 .output {
   white-space: pre-wrap;
   font-family: monospace;
   font-size: 14px;
-  background-color: #32445a;
+  /* 与输入框一致的浅色背景 */
+  background-color: #e0f7fa;
   padding: 16px;
-  border: 1px solid #58709c;
+  /* 图片主题蓝绿色边框 */
+  border: 1px solid #00acc1;
   border-radius: 8px;
-  color: #f3f4f6;
+  color: #263238;
   margin-top: 20px;
   min-height: 120px;
   line-height: 1.6;
@@ -90,68 +98,77 @@ button:hover {
   display: none;
 }
 
-/* 日期选择区域更紧凑 */
+/* 日期选择区域 */
 #price-section label {
   font-weight: bold;
   margin-top: 8px;
-  color: #e5e7eb;
+  /* 标签蓝绿色，与图片一致 */
+  color: #00acc1;
 }
 
-/* 动画：加载过渡效果 */
+/* 动画效果 */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* 表单容器 - 图片中表单区块风格 */
 #trade-form {
   margin-top: 20px;
   padding: 20px;
-  background-color: #1e293b;
-  border: 1px solid #3b82f6;
+  /* 表单浅色背景 */
+  background-color: #e0f7fa;
+  /* 主题蓝绿色边框 */
+  border: 1px solid #00acc1;
   border-radius: 12px;
   animation: fadeIn 0.3s ease;
 }
 
+/* 表单输入控件 */
 #trade-form input[type="text"],
 #trade-form input[type="number"],
 #trade-form select {
-  background-color: #0f172a;
-  color: #f3f4f6;
+  /* 表单内控件背景 */
+  background-color: #e0f7fa;
+  color: #263238;
   padding: 10px;
-  border: 1px solid #475569;
+  border: 1px solid #00acc1;
   border-radius: 8px;
   margin-bottom: 16px;
 }
 
-/* 返回按钮样式 */
+/* 返回按钮 - 图片中次要按钮风格 */
 .back-button {
   margin-top: 24px;
   width: 100%;
   padding: 12px 32px;
-  background-color: #6b7280;
-  color: white;
+  /* 灰色渐变，匹配图片次要按钮 */
+  background: linear-gradient(90deg, #b2ebf2, #e0f7fa);
+  color: #263238;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 }
 
 .back-button:hover {
-  background-color: #4b5563;
+  /* 加深灰色渐变 */
+  background: linear-gradient(90deg, #80d8df, #b2ebf2);
 }
 
-/* 提示消息样式 */
+/* 提示消息 - 图片中信息提示框风格 */
 .alert-message {
   padding: 16px;
   margin-bottom: 24px;
-  background-color: #3b82f6;
+  /* 蓝绿色背景 */
+  background-color: #e0f7fa;
   border-radius: 8px;
   font-size: 14px;
   line-height: 1.6;
-  color: #f3f4f6;
-  border-left: 4px solid #93c5fd;
+  color: #263238;
+  /* 浅蓝色左侧强调线，匹配图片 */
+  border-left: 4px solid #4dd0e1;
 }
-    

@@ -35,10 +35,10 @@ function setPersona() {
 
 
   const personaNames = {
-    type1: "Conservative",
-    type2: "Balanced",
-    type3: "Aggressive",
-    type4: "Speculative"
+    type1: "Conservative——Benjamin Graham",
+    type2: "Balanced——Charlie Munger",
+    type3: "Aggressive——Peter Lynch",
+    type4: "Radical——Elon Musk"
   };
 
   document.getElementById("output").innerText = 

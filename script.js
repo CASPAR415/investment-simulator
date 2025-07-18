@@ -13,7 +13,7 @@ function setPersona() {
     default: funds = 0;
   }
 
-  fetch("https://investment-backend-1-rlp3.onrender.com/init", {
+  fetch("https://investment-backend-2-0l58.onrender.com/init", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -54,7 +54,7 @@ function getAdvice() {
     return;
   }
 
-  fetch("https://investment-backend-1-rlp3.onrender.com/advice", {
+  fetch("https://investment-backend-2-0l58.onrender.com/advice", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -102,7 +102,7 @@ function submitTrade() {
     return;
   }
 
-  fetch("https://investment-backend-1-rlp3.onrender.com/trade", {
+  fetch("https://investment-backend-2-0l58.onrender.com/trade", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -131,7 +131,7 @@ function submitTrade() {
 
 
 function fetchHoldings() {
-  fetch("https://investment-backend-1-rlp3.onrender.com/holdings")
+  fetch("https://investment-backend-2-0l58.onrender.com/holdings")
     .then(res => res.text())
     .then(data => {
       document.getElementById("output").innerText = data;
@@ -154,7 +154,7 @@ function viewPrices() {
     return;
   }
 
-  fetch(`https://investment-backend-1-rlp3.onrender.com/prices?date=${date}`)
+  fetch(`https://investment-backend-2-0l58.onrender.com/prices?date=${date}`)
     .then(res => res.json())
     .then(data => {
       if (data.error) {
@@ -183,7 +183,7 @@ function updateDate() {
     return;
   }
 
-  fetch("https://investment-backend-1-rlp3.onrender.com/update-date", {
+  fetch("https://investment-backend-2-0l58.onrender.com/update-date", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
